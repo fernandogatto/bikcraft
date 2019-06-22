@@ -1,3 +1,15 @@
+@mixin responsive($dispositivo) {
+	@if $dispositivo == tablet {
+		@media only screen and (min-width: 768px) and (max-width: 959px) {
+			@content;
+		}
+	} @else if $dispositivo == mobile {
+		@media only screen and (max-width: 767px) {
+			@content;
+		}
+	}
+}
+
 *, *:before, *:after {
   -webkit-box-sizing: border-box; 
   -moz-box-sizing: border-box; 
@@ -43,7 +55,7 @@ $cols: 16;
 	clear: both;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 959px) {
+@include responsive(tablet) {
 
 	$container: 768;
 	
@@ -63,7 +75,8 @@ $cols: 16;
 	}
 }
 
-@media only screen and (max-width: 767px) {
+@include responsive(mobile) {
+
 	$container: 300;
 
 	%mobile {
